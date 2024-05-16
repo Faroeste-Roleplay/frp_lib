@@ -12,9 +12,7 @@ client_scripts{
 	"data/horses_components.lua",
 	"data/mp_overlay_layers.lua",
 	"data/mp_peds_components.lua",
-
-	"modules/utils.lua",
-	"modules/utils.js",
+	"lib/utils.js",
 }
 
 files {
