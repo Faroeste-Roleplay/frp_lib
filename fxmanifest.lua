@@ -1,11 +1,15 @@
-fx_version "adamant"
-game "rdr3"
-rdr3_warning "I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships."
+fx_version 'cerulean'
 
-shared_scripts {
-	"lib/utils.lua",
-	"lib/i18n.lua",
-	"lib/dataview.lua",
+game 'common'
+
+rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
+
+lua54 'yes'
+
+use_experimental_fxv2_oal 'yes'
+
+client_scripts {
+    -- 'code/volume_manager.lua'
 }
 
 client_scripts{
@@ -16,10 +20,12 @@ client_scripts{
 }
 
 files {
-	"lib/utils.lua",
-	"lib/Tunnel.lua",
-	"lib/Proxy.lua",
-	"lib/Tools.lua",
-}
+    'library/linker.lua',
+    'library/bootstrap.lua',
+    'library/shared/**/*.lua',
+    'library/client/**/*.lua',
 
-lua54 'yes'
+    'library/client/prompt_builder.lua',
+
+	"lib/*.lua",
+}
