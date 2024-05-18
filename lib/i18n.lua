@@ -23,6 +23,10 @@ function i18n.setup(l)
 	end
 end
 
+function i18n.getCurrentLanguage()
+	return lang
+end
+
 function i18n.exportData()
 	local result = languageCache
 	return result
@@ -106,6 +110,7 @@ RegisterNetEvent("FRP:SetLanguage", function(language)
 	
 	if RESOURCE_NAME == 'frp_lib' then
 		SetResourceKvp('frp:language', language)
+		lang = language
 
 		if not IsDuplicityVersion() then
 			if language ~= GetResourceKvpString('frp:language') then
