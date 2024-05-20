@@ -12,6 +12,7 @@ link '@frp_lib/library/shared/scheduler/setTick.lua'
 
 link '@frp_lib/library/shared/resource/resource.lua'
 link '@frp_lib/library/shared/resource/onResourceStop.lua'
+link '@frp_lib/library/shared/enum/code.lua'
 
 link '@frp_lib/lib/table.lua'
 link '@frp_lib/lib/string.lua'
