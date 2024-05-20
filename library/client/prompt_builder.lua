@@ -1,6 +1,6 @@
 --[[ PromptBuilderChain ]]
 
-local eModes = { ['Standard'] = true, ['Hold'] = true }
+local eModes = { ['Standard'] = true, ['Hold'] = true, ['AutoFill'] = true }
 
 local PromptBuilderChain = { }
 
@@ -38,6 +38,11 @@ function PromptBuilderChain:setMode(mode, ... --[[ params ]])
 
     if mode == 'Hold' then
         PromptSetHoldMode(self.promptId, ...)
+    end
+
+    if mode == 'AutoFill' then
+        PromptSetHoldMode(self.promptId, ...)
+        PromptSetHoldAutoFillMode(self.promptId, ...)
     end
     
     return self
