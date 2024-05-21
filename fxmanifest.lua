@@ -8,10 +8,6 @@ lua54 'yes'
 
 use_experimental_fxv2_oal 'yes'
 
-client_scripts {
-    -- 'code/volume_manager.lua'
-}
-
 client_scripts{
 	"data/horses_components.lua",
 	"data/mp_overlay_layers.lua",
@@ -24,6 +20,8 @@ files {
     'library/bootstrap.lua',
     'library/shared/**/*.lua',
     'library/client/**/*.lua',
+    'library/server/**/*.lua',
+    'library/server/*.lua',
 
     'library/client/prompt_builder.lua',
 

@@ -32,4 +32,5 @@ end
 
 if IS_FXSERVER then
     link '@frp_lib/library/server/logger_datadog_transport.lua'
+    link '@frp_lib/library/server/virtual_world.lua'
 end
