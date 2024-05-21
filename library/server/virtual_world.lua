@@ -1,13 +1,12 @@
 local VirtualWorlds = {}
 local Players = {}
 
-local VirtualWorld = {}
-Proxy.addInterface("virtual_world", VirtualWorld)
+VirtualWorld = {}
 
 local globalWorldId = 0
 
-function VirtualWorld:Create( this, players )
-    local virtualWorldId = #VirtualWorlds
+function VirtualWorld:Create( players )
+    local virtualWorldId = #VirtualWorlds + 1
 
     local virtualWorld = {
         id = virtualWorldId,
@@ -19,6 +18,7 @@ function VirtualWorld:Create( this, players )
         if Players[playerId] then
             VirtualWorld:RemovePlayerFromVirtualWorld( playerId )
         end
+
         SetPlayerRoutingBucket(playerId, virtualWorldId)
         Players[playerId] = virtualWorldId
     end
@@ -28,11 +28,11 @@ function VirtualWorld:Create( this, players )
     return virtualWorld
 end
 
-function VirtualWorld:IsValidWorld( this, virtualWorldId )
+function VirtualWorld:IsValidWorld( virtualWorldId )
     return VirtualWorlds[virtualWorldId] ~= nil
 end
 
-function VirtualWorld:DeleteWorld( this, virtualWorldId )
+function VirtualWorld:DeleteWorld( virtualWorldId )
     local virtualWorld = VirtualWorlds[virtualWorldId]
 
     if not virtualWorld then
@@ -46,17 +46,18 @@ function VirtualWorld:DeleteWorld( this, virtualWorldId )
     VirtualWorlds[virtualWorldId] = nil
 end
 
-function VirtualWorld:AddPlayerToGlobalWorld( this, playerId )
+function VirtualWorld:AddPlayerToGlobalWorld( playerId )
     VirtualWorld:RemovePlayerFromVirtualWorld( playerId )
+    
     SetPlayerRoutingBucket( playerId, globalWorldId )
 end
 
-function VirtualWorld:AddPlayerOnVirtualWorld( this, playerId, virtualWorldId )
+function VirtualWorld:AddPlayerOnVirtualWorld( playerId, virtualWorldId )
     local virtualWorld = VirtualWorlds[virtualWorldId]
     local playerOnVirtualWorld = VirtualWorld:GetPlayerVirtualWorld( playerId )
 
     if not virtualWorld then
-        return VirtualWorld:Create( { playerId })
+        return VirtualWorld:Create( { playerId } )
     end
 
     if playerOnVirtualWorld then
@@ -68,7 +69,7 @@ function VirtualWorld:AddPlayerOnVirtualWorld( this, playerId, virtualWorldId )
     table.insert(virtualWorld.players, playerId)
 end
 
-function VirtualWorld:RemovePlayerFromVirtualWorld( this, playerId )
+function VirtualWorld:RemovePlayerFromVirtualWorld( playerId )
     local playerVirtualWorld = VirtualWorld:GetPlayerVirtualWorld( playerId )
 
     if not playerVirtualWorld then
@@ -83,7 +84,7 @@ function VirtualWorld:RemovePlayerFromVirtualWorld( this, playerId )
     end
 end
 
-function VirtualWorld:GetPlayerVirtualWorld( this, playerId )
+function VirtualWorld:GetPlayerVirtualWorld( playerId )
     local playerVirtualWorldId = Players[playerId]
     local virtualWorld = VirtualWorlds[playerVirtualWorldId]
     
@@ -94,7 +95,7 @@ function VirtualWorld:GetPlayerVirtualWorld( this, playerId )
     return virtualWorld
 end
 
-function VirtualWorld:GetPlayersFromVirtualWorld( this, virtualWorldId )
+function VirtualWorld:GetPlayersFromVirtualWorld( virtualWorldId )
     local virtualWorld = VirtualWorlds[virtualWorldId]
     
     if not virtualWorld then
