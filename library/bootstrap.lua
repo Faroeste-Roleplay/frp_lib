@@ -26,6 +26,7 @@ link '@frp_lib/library/shared/random/code.lua'
 
 if IS_GAME then
     link '@frp_lib/library/client/prompt_builder.lua'
+    link '@frp_lib/library/client/progressbar/code.lua'
     link '@frp_lib/library/client/prompthelper/promptHelper.lua'
 
     useOrbitalCam             = lazyLink '@frp_lib/library/client/orbitalcam/orbitalcam.lua'
