@@ -22,6 +22,8 @@ link '@frp_lib/lib/i18n.lua'
 link '@frp_lib/lib/deferalsCard.lua'
 link '@frp_lib/lib/dataview.lua'
 
+link '@frp_lib/library/shared/random/code.lua'
+
 if IS_GAME then
     link '@frp_lib/library/client/prompt_builder.lua'
     link '@frp_lib/library/client/prompthelper/promptHelper.lua'
