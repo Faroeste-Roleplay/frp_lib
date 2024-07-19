@@ -5,15 +5,16 @@ local IS_SERVER = IsDuplicityVersion()
 local RESOURCE_NAME = GetCurrentResourceName()
 local languageCache = {}
 
-local lang = GetResourceKvpString('frp:language') or 'en'
+local lang = GetConvar('frp:language', 'en')
 
-if not IS_SERVER then
-	lang = GetExternalKvpString('frp_lib', 'frp:language') or 'en'
 
-	if RESOURCE_NAME == 'frp_lib' then
-		TriggerServerEvent('FRP:SetLanguage', lang)
-	end
-end
+-- if not IS_SERVER then
+-- 	lang = GetExternalKvpString('frp_lib', 'frp:language') or 'en'
+
+-- 	if RESOURCE_NAME == 'frp_lib' then
+-- 		TriggerServerEvent('FRP:SetLanguage', lang)
+-- 	end
+-- end
 
 avalLangs = {}
 
