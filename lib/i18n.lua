@@ -5,16 +5,18 @@ local IS_SERVER = IsDuplicityVersion()
 local RESOURCE_NAME = GetCurrentResourceName()
 local languageCache = {}
 
-local lang = GetConvar('frp:language', 'en')
+local lang = GetConvar('frp_language', 'en')
 
+if not IS_SERVER then
+	kvpLang = GetResourceKvpString('frp_language') 
 
--- if not IS_SERVER then
--- 	lang = GetExternalKvpString('frp_lib', 'frp:language') or 'en'
-
--- 	if RESOURCE_NAME == 'frp_lib' then
--- 		TriggerServerEvent('FRP:SetLanguage', lang)
--- 	end
--- end
+	if RESOURCE_NAME == 'frp_lib' then
+		kvpLang = GetExternalKvpString('frp_lib', 'frp_language')
+		if  kvpLang ~= nil and kvpLang ~= ""  then
+			TriggerEvent('FRP:SetLanguage', kvpLang)
+		end
+	end
+end
 
 avalLangs = {}
 
@@ -106,18 +108,17 @@ function mysplit(inputstr, sep)
 	return t
 end
 
-RegisterNetEvent("FRP:SetLanguage", function(language)
+AddEventHandler("FRP:SetLanguage", function(language)
 	i18n.setLang(language)
 	
 	if RESOURCE_NAME == 'frp_lib' then
-		SetResourceKvp('frp:language', language)
+		SetResourceKvp('frp_language', language)
 		lang = language
 
 		if not IsDuplicityVersion() then
-			if language ~= GetResourceKvpString('frp:language') then
+			if language ~= GetResourceKvpString('frp_language') then
 				cAPI.Notify(i18n.translate('info.language_changed'), 'success')
 			end
 		end
 	end
 end)
-

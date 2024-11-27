@@ -13,6 +13,7 @@ client_scripts{
 	"data/mp_overlay_layers.lua",
 	"data/mp_peds_components.lua",
 	"lib/utils.js",
+	"lib/i18n.lua",
 }
 
 files {
