@@ -34,6 +34,7 @@ function PromptBuilderChain:setMode(mode, ... --[[ params ]])
     assert(eModes[mode], ('Mode `%s` não é valido, modes validos: %s'):format(mode, json.encode(eModes)) )
 
     if mode == 'Standard' then
+        -- UiPromptSetPressedTimedMode(self.promptId, 10)
     end
 
     if mode == 'Hold' then
@@ -74,6 +75,12 @@ function PromptBuilderChain:setVolume(volume)
     
     return self
 end
+function PromptBuilderChain:setEnabled(bool)
+    PromptSetEnabled(self.promptId, bool)
+
+    return self
+end
+
 
 function PromptBuilderChain:build()
     PromptRegisterEnd(self.promptId)
