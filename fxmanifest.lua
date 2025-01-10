@@ -6,7 +6,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 lua54 'yes'
 
-use_experimental_fxv2_oal 'yes'
+-- -- use_experimental_fxv2_oal 'yes'
 
 client_scripts{
 	"data/horses_components.lua",
