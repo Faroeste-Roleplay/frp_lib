@@ -31,6 +31,9 @@ if IS_GAME then
 
     useOrbitalCam             = lazyLink '@frp_lib/library/client/orbitalcam/orbitalcam.lua'
     useControllableOrbitalCam = lazyLink '@frp_lib/library/client/orbitalcam/controllable_orbitalcam.lua'
+
+    usePedCam             = lazyLink '@frp_lib/library/client/pedcam/pedcam.lua'
+    useControllablePedCam = lazyLink '@frp_lib/library/client/pedcam/controllable_pedcam.lua'
 end
 
 if IS_FXSERVER then
